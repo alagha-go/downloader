@@ -27,6 +27,8 @@ type Episode struct {
     Index                                       int                                     `json:"index,omitempty" bson:"index,omitempty"`
     Available                                   bool                                    `json:"available,omitempty" bson:"available,omitempty"`
     Code										string									`json:"code,omitempty" bson:"code,omitempty"`
+	Server										*Server									`json:"server,omitempty" bson:"server,omitempty"`
+	Servers										[]Server								`json:"servers,omitempty" bson:"servers,omitempty"`
 }
 
 type Server struct {
