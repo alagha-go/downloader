@@ -20,7 +20,7 @@ func CollectPages(PagesLength int) {
 			PrintYellow(fmt.Sprintf("TvShows   :%d",index))
 		}
 	}
-	SavePagesData()
+	SaveTvShows()
 	PrintBlue(len(TvShows))
 	PrintCyan(EpisodesLength)
 	PrintGreen("done collecting all the pages data")
@@ -55,7 +55,7 @@ func CollectTvShows(element *colly.HTMLElement) {
 }
 
 
-func SavePagesData() {
+func SaveTvShows() {
 	data := JsonMarshal(TvShows)
 	ioutil.WriteFile("./DB/Tvshows/tvshows.json", data, 0755)
 }
