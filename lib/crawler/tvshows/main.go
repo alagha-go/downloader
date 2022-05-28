@@ -12,6 +12,7 @@ import (
 
 var (
 	TvShows		[]TvShow
+	EpisodesLength int
 )
 
 
