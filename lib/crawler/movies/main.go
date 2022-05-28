@@ -13,6 +13,11 @@ import (
 
 var (
 	Movies []Movie
+	TotalNumberOfPages int
+	CurrentPageNumber int
+	CurrentPageCollectedMovies int
+	TotalNumberOfMovies int
+	CurrentMovie	int
 )
 
 
