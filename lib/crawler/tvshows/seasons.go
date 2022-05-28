@@ -30,6 +30,16 @@ func (TvShow *TvShow)CollectAllSeasons(element *colly.HTMLElement) {
 }
 
 
+func (TvShow *TvShow) FindSeason(code string) Season {
+	for index := range TvShow.Seasons {
+		if TvShow.Seasons[index].Code == code {
+			return TvShow.Seasons[index]
+		}
+	}
+	return Season{}
+}
+
+
 func (TvShow *TvShow) UpdateSeason(Season Season) {
 	url := fmt.Sprintf("https://s1.interphlix.com/tv-shows/%s/addseason", TvShow.ID.Hex())
 	body := JsonMarshal(Season)
