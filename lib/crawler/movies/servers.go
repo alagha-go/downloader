@@ -25,3 +25,28 @@ func (Movie *Movie)SetServers() {
     })
     collector.Visit(url)
 }
+
+
+func (Movie *Movie)SetID() {
+	for index, server := range Movie.Servers {
+		url := "https://tinyzonetv.to/ajax/get_link/"+ server.WatchID
+		data, _, err := GetRequest(url, false)
+		HanleError(err)
+		res, err := UnmarshalLinkResponse(data)
+		HanleError(err)
+        if server.Name == "Streamlare" {
+			Movie.Servers[index].Id = strings.ReplaceAll(res.Link, "https://streamlare.com/e/", "")
+			Movie.Servers[index].Url = "https://streamlare.com/v/" + Movie.Servers[index].Id
+		}else if server.Name == "Vidcloud"{
+			Movie.Servers[index].Id = strings.ReplaceAll(res.Link, "https://rabbitstream.net/embed-4/", "")
+			Movie.Servers[index].Id = strings.ReplaceAll(Movie.Servers[index].Id, "?z=", "")
+			Movie.Servers[index].Url = "https://rabbitstream.net/embed/m-download/" + Movie.Servers[index].Id
+		}else if server.Name == "UpCloud" {
+			Movie.Servers[index].Id = strings.ReplaceAll(res.Link, "https://mzzcloud.life/embed-4/", "")
+			Movie.Servers[index].Id = strings.ReplaceAll(Movie.Servers[index].Id, "?z=", "")
+			Movie.Servers[index].Url = "https://mzzcloud.life/embed/m-download/" + Movie.Servers[index].Id
+		}else {
+			Movie.Servers[index].Url = res.Link
+		}
+	}
+}
