@@ -36,6 +36,7 @@ func CollectPageMovies(page int) {
 func CollectMovies(element *colly.HTMLElement) {
 	element.ForEach(".flw-item", func(_ int, element *colly.HTMLElement) {
 		var Movie Movie
+		Movie.SetMovieID()
         Movie.Title = element.ChildAttr("a", "title")
         Movie.ImageUrl = element.ChildAttr("img", "data-src")
         Movie.PageUrl = "https://tinyzonetv.to" + element.ChildAttr("a", "href")
