@@ -10,6 +10,10 @@ import (
 	"github.com/gocolly/colly"
 )
 
+var (
+	TvShows		[]TvShow
+)
+
 
 func Main() {
 
