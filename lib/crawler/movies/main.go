@@ -3,6 +3,7 @@ package movies
 import (
 	"bytes"
 	"encoding/json"
+	"io/ioutil"
 	"log"
 	"strconv"
 	"strings"
@@ -46,6 +47,13 @@ func GetNumberOfPages() int {
 	collector.Visit("https://tinyzonetv.to/movie")
 
 	return numberofPages
+}
+
+
+func LoadMovies() {
+	data, err := ioutil.ReadFile("./DB/Movies/movies.json")
+	HanleError(err)
+	json.Unmarshal(data, &Movies)
 }
 
 
