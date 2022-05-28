@@ -17,7 +17,7 @@ var (
 
 
 func Main() {
-
+	CollectPages(GetNumberOfPages())
 }
 
 
