@@ -50,3 +50,13 @@ func (Movie *Movie) SetMovieID() {
     }
     Movie.ID = ID
 }
+
+
+func (Movie *Movie) Exists() bool {
+	for index := range Movies {
+		if Movie.Code == Movies[index].Code {
+			return true
+		}
+	}
+	return false
+}
