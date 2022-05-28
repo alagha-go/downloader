@@ -22,6 +22,17 @@ func CollectPages(PagesLength int) {
 	PrintBlue(len(Movies))
 	SavePagesData()
 	PrintGreen("done collecting all the pages data")
+
+	for index := range Movies {
+		CurrentMovie = index+1
+		if !Movies[index].Collected {
+			Movies[index].SetServers()
+			Movies[index].Collected = true
+		}
+		if !Movies[index].Uploaded {
+			Movies[index].Upload()
+		}
+	}
 }
 
 
