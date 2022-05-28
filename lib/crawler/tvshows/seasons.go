@@ -45,7 +45,7 @@ func (TvShow *TvShow) FindSeasonIndex(code string) int {
 			return index
 		}
 	}
-	return 0
+	return -1
 }
 
 
