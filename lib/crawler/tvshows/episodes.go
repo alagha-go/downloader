@@ -32,5 +32,6 @@ func (Season *Season)CollectAllEpisodes(element *colly.HTMLElement) {
 		Episode.Code = element.ChildAttr("a", "data-id")
 		Episode.SetServers()
 		Season.Episodes = append(Season.Episodes, Episode)
+		EpisodesLength = EpisodesLength+len(Season.Episodes)
 	})
 }
