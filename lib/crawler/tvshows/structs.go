@@ -19,6 +19,7 @@ type Season struct {
 	Name										string									`json:"name,omitempty" bson:"name,omitempty"`
     Index                                       int                                     `json:"index,omitempty" bson:"index,omitempty"`
     Code										string									`json:"code,omitempty" bson:"code,omitempty"`
+	Episodes									[]Episode								`json:"episodes,omitempty" bson:"episodes,omitempty"`
 }
 
 type Episode struct {
