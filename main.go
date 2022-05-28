@@ -18,8 +18,8 @@ type Statistics struct {
 
 
 func main() {
-	movies.Main()
-	tvshows.Main()
+	go movies.Main()
+	go tvshows.Main()
 }
 
 
