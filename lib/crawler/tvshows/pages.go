@@ -1,7 +1,7 @@
 package tvshows
 
-
 import (
+	"io/ioutil"
 	"strconv"
 	"strings"
 
@@ -41,4 +41,10 @@ func CollectTvShows(element *colly.HTMLElement) {
 		TvShow.Type = "Tv-Show"
 		TvShows = append(TvShows, TvShow)
 	})
+}
+
+
+func SavePagesData() {
+	data := JsonMarshal(TvShows)
+	ioutil.WriteFile("./DB/Tvshows/tvshows.json", data, 0755)
 }
