@@ -3,6 +3,7 @@ package tvshows
 import (
 	"bytes"
 	"encoding/json"
+	"io/ioutil"
 	"log"
 	"strconv"
 	"strings"
@@ -48,6 +49,12 @@ func GetNumberOfPages() int {
 	return numberofPages
 }
 
+
+func LoadTvShows() {
+	data, err := ioutil.ReadFile("./DB/Tvshows/tvshows.json")
+	HanleError(err)
+	json.Unmarshal(data, &TvShows)
+}
 
 
 func JsonMarshal(data interface{}) []byte {
