@@ -38,6 +38,7 @@ func CollectPageTvShows(page int) {
 func CollectTvShows(element *colly.HTMLElement) {
 	element.ForEach(".flw-item", func(_ int, element *colly.HTMLElement) {
 		var TvShow TvShow
+		TvShow.SetTvShowID()
 		TvShow.ID = primitive.NewObjectID()
         TvShow.Title = element.ChildAttr("a", "title")
         TvShow.ImageUrl = element.ChildAttr("img", "data-src")
