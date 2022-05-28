@@ -23,6 +23,7 @@ var (
 
 
 func Main() {
+	LoadTvShows()
 	CollectPages(GetNumberOfPages())
 }
 
