@@ -1,6 +1,7 @@
 package tvshows
 
 import (
+	"encoding/json"
 	"strings"
 
 	"github.com/gocolly/colly"
@@ -60,4 +61,15 @@ func (TvShow *TvShow) Exists() bool {
 		}
 	}
 	return false
+}
+
+
+func (Tvshow *TvShow) Upload() {
+	var newTvShow TvShow
+	data, _, _ := PostRequest("https://s1.interphlix.com/movies/upload", JsonMarshal(Tvshow), false)
+	err := json.Unmarshal(data, &newTvShow)
+	if err != nil {
+		return
+	}
+	Tvshow.Uploaded = true
 }
