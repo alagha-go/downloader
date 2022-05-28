@@ -13,6 +13,11 @@ import (
 var (
 	TvShows		[]TvShow
 	EpisodesLength int
+	TotalNumberOfPages int
+	CurrentPageNumber int
+	CurrentPageCollectedMovies int
+	TotalNumberOfMovies int
+	CurrentMovie	int
 )
 
 
