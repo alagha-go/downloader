@@ -46,6 +46,7 @@ func CollectTvShows(element *colly.HTMLElement) {
 		index := strings.Index(TvShow.PageUrl, "free-")
     	TvShow.Code = TvShow.PageUrl[index+5:]
 		TvShow.Type = "Tv-Show"
+		TvShow.CollectTvShowContent()
 		TvShows = append(TvShows, TvShow)
 	})
 }
