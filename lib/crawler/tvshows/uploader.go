@@ -7,7 +7,7 @@ import (
 
 
 func UploadUnUploadedTvShows() {
-	var TvShows []Movie
+	var TvShows []TvShow
 	data, err := ioutil.ReadFile("./DB/TvShows/tvshows.json")
 	HanleError(err)
 	json.Unmarshal(data, &TvShows)
@@ -15,7 +15,7 @@ func UploadUnUploadedTvShows() {
 		if !TvShows[index].Uploaded && TvShows[index].Collected{
 			TvShows[index].Upload()
 			if !TvShows[index].Uploaded {
-				TvShows[index].SetMovieID()
+				TvShows[index].SetTvShowID()
 				TvShows[index].Upload()
 			}
 			ioutil.WriteFile("./DB/Tvshows/tvshows.json", JsonMarshal(TvShows), 0755)
