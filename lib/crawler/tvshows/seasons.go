@@ -1,6 +1,8 @@
 package tvshows
 
 import (
+	"fmt"
+
 	"github.com/gocolly/colly"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
@@ -25,4 +27,11 @@ func (TvShow *TvShow)CollectAllSeasons(element *colly.HTMLElement) {
 		Season.GetEpisodes()
 		TvShow.Seasons = append(TvShow.Seasons, Season)
 	})
+}
+
+
+func (TvShow *TvShow) UpdateSeason(Season Season) {
+	url := fmt.Sprintf("https://s1.interphlix.com/tv-shows/%s/addseason", TvShow.ID.Hex())
+	body := JsonMarshal(Season)
+	PostRequest(url, body, false)
 }
