@@ -52,3 +52,12 @@ func (TvShow *TvShow) SetTvShowID() {
     }
     TvShow.ID = ID
 }
+
+func (TvShow *TvShow) Exists() bool {
+	for index := range TvShows {
+		if TvShows[index].Code == TvShow.Code {
+			return true
+		}
+	}
+	return false
+}
