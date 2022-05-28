@@ -13,6 +13,7 @@ func CollectPages(PagesLength int) {
 	for index:=1; index<PagesLength+1; index++ {
 		CollectPageMovies(index)
 	}
+	println(len(Movies))
 	SavePagesData()
 	PrintGreen("done collecting all the pages data")
 }
