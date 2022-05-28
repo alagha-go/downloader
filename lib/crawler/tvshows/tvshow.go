@@ -1,10 +1,31 @@
 package tvshows
 
 import (
+	"strings"
+
 	"github.com/gocolly/colly"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
+
+
+func (TvShow *TvShow)CollectTvShowContent() {
+    collector := colly.NewCollector()
+
+    collector.OnHTML(".description", func(element *colly.HTMLElement){
+        TvShow.Description = element.Text
+        TvShow.Description = strings.ReplaceAll(TvShow.Description, "\n", "")
+        TvShow.Description = strings.ReplaceAll(TvShow.Description, "  ", "")
+        TvShow.Description = strings.TrimPrefix(TvShow.Description, " ")
+        TvShow.Description = strings.TrimSuffix(TvShow.Description, " ")
+    })
+
+    
+    collector.OnHTML(".elements", TvShow.SetElements)
+	TvShow.GetSeasons()
+    
+    collector.Visit(TvShow.PageUrl)
+}
 
 
 func (TvShow *TvShow)SetElements(element *colly.HTMLElement) {
