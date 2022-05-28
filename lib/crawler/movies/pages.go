@@ -11,7 +11,9 @@ import (
 
 
 func CollectPages(PagesLength int) {
+	TotalNumberOfPages = PagesLength
 	for index:=1; index<PagesLength+1; index++ {
+		CurrentPageNumber = index
 		CollectPageMovies(index)
 		if index % 50 == 0 {
 			PrintYellow(fmt.Sprintf("Movies    :%d",index))
@@ -34,7 +36,8 @@ func CollectPageMovies(page int) {
 
 
 func CollectMovies(element *colly.HTMLElement) {
-	element.ForEach(".flw-item", func(_ int, element *colly.HTMLElement) {
+	element.ForEach(".flw-item", func(pos int, element *colly.HTMLElement) {
+		CurrentPageCollectedMovies = pos
 		var Movie Movie
 		Movie.SetMovieID()
         Movie.Title = element.ChildAttr("a", "title")
