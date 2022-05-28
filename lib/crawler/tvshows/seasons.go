@@ -1,14 +1,12 @@
 package tvshows
 
 import (
-	"fmt"
-
 	"github.com/gocolly/colly"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
 
-func (TvShow *Movie)GetSeasons() {
+func (TvShow *TvShow)GetSeasons() {
 	collector := colly.NewCollector()
 	url := "https://tinyzonetv.to/ajax/v2/tv/seasons/" + TvShow.Code
 
@@ -17,7 +15,7 @@ func (TvShow *Movie)GetSeasons() {
 	collector.Visit(url)
 }
 
-func (TvShow *Movie)CollectAllSeasons(element *colly.HTMLElement) {
+func (TvShow *TvShow)CollectAllSeasons(element *colly.HTMLElement) {
 	element.ForEach("a", func(index int, element *colly.HTMLElement) {
 		var Season Season
 		Season.ID = primitive.NewObjectID()
