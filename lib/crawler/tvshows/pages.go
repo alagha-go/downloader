@@ -15,6 +15,8 @@ func CollectPages(PagesLength int) {
 		CollectPageTvShows(index)
 	}
 	SavePagesData()
+	PrintBlue(len(TvShows))
+	PrintCyan(EpisodesLength)
 	PrintGreen("done collecting all the pages data")
 }
 
