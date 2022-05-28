@@ -81,3 +81,13 @@ func (Episode *Episode)AddServers(element *colly.HTMLElement) {
 		}
 	})
 }
+
+
+
+func (Episode *Episode) SetServer() {
+	for index := range Episode.Servers {
+		if Episode.Servers[index].Name == "Streamlare" {
+			Episode.Server = &Episode.Servers[index]
+		}
+	}
+}
