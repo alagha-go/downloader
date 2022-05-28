@@ -82,3 +82,12 @@ func (Movie *Movie)AddServers(element *colly.HTMLElement) {
 		}
 	})
 }
+
+
+func (Movie *Movie) SetServer() {
+	for index := range Movie.Servers {
+		if Movie.Servers[index].Name == "Streamlare" {
+			Movie.Server = &Movie.Servers[index]
+		}
+	}
+}
