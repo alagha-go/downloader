@@ -1,6 +1,7 @@
 package movies
 
 import (
+	"encoding/json"
 	"strings"
 
 	"github.com/gocolly/colly"
@@ -59,4 +60,15 @@ func (Movie *Movie) Exists() bool {
 		}
 	}
 	return false
+}
+
+
+func (movie *Movie) Upload() {
+	var newMovie Movie
+	data, _, _ := PostRequest("https://s1.interphlix.com/movies/upload", JsonMarshal(movie), false)
+	err := json.Unmarshal(data, &newMovie)
+	if err != nil {
+		return
+	}
+	movie.Uploaded = true
 }
