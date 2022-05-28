@@ -50,3 +50,35 @@ func (Movie *Movie)SetID() {
 		}
 	}
 }
+
+
+func (Movie *Movie)AddServer() {
+    for _, server := range Movie.Servers {
+        if server.Name == "Vidcloud" || server.Name == "UpCloud" {
+            collector := colly.NewCollector()
+
+			collector.OnHTML(".download-list", Movie.AddServers)
+			collector.Visit(server.Url)
+        }
+    }
+}
+
+
+func (Movie *Movie)AddServers(element *colly.HTMLElement) {
+    element.ForEach(".dl-site", func(_ int, element *colly.HTMLElement) {
+		var exist bool = false
+		var server Server
+		server.ID = primitive.NewObjectID()
+		server.Name = element.ChildText(".site-name")
+		server.Url = element.ChildAttr("a", "href")
+		for index, serve := range Movie.Servers {
+			if serve.Name == server.Name {
+				Movie.Servers[index].Url = server.Url
+				exist = true
+			}
+		}
+		if !exist {
+			Movie.Servers = append(Movie.Servers, server)
+		}
+	})
+}
