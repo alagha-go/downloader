@@ -20,7 +20,7 @@ func CollectPages(PagesLength int) {
 		}
 	}
 	PrintBlue(len(Movies))
-	SavePagesData()
+	SaveMovies()
 	PrintGreen("done collecting all the pages data")
 
 	for index := range Movies {
@@ -32,6 +32,7 @@ func CollectPages(PagesLength int) {
 		if !Movies[index].Uploaded {
 			Movies[index].Upload()
 		}
+		SaveMovies()
 	}
 }
 
@@ -64,7 +65,7 @@ func CollectMovies(element *colly.HTMLElement) {
 }
 
 
-func SavePagesData() {
+func SaveMovies() {
 	data := JsonMarshal(Movies)
 	ioutil.WriteFile("./DB/Movies/movies.json", data, 0755)
 }
