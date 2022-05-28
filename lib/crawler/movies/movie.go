@@ -1,10 +1,30 @@
 package movies
 
 import (
+	"strings"
+
 	"github.com/gocolly/colly"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
+
+func (Movie *Movie)CollectMovieContent() {
+    collector := colly.NewCollector()
+
+    collector.OnHTML(".description", func(element *colly.HTMLElement){
+        Movie.Description = element.Text
+        Movie.Description = strings.ReplaceAll(Movie.Description, "\n", "")
+        Movie.Description = strings.ReplaceAll(Movie.Description, "  ", "")
+        Movie.Description = strings.TrimPrefix(Movie.Description, " ")
+        Movie.Description = strings.TrimSuffix(Movie.Description, " ")
+    })
+
+    
+    collector.OnHTML(".elements", Movie.SetElements)
+    Movie.SetServers()
+    
+    collector.Visit(Movie.PageUrl)
+}
 
 
 func (Movie *Movie)SetElements(element *colly.HTMLElement) {
