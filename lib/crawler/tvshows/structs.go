@@ -36,3 +36,12 @@ type Server struct {
     WatchID                                     string                               	`json:"watch_id,omitempty" bson:"watch_id,omitempty"`
     Url                                         string                               	`json:"url,omitempty" bson:"url,omitempty"`
 }
+
+
+type LinkResponse struct {
+	Type                                        string                                   `json:"type,omitempty" bson:"type,omitempty"`   
+	Link                                        string                                   `json:"link,omitempty" bson:"link,omitempty"`   
+	Sources                                     []interface{}                            `json:"sources,omitempty" bson:"sources,omitempty"`
+	Tracks                                      []interface{}                            `json:"tracks,omitempty" bson:"tracks,omitempty"` 
+	Title                                       string                                   `json:"title,omitempty" bson:"title,omitempty"`  
+}
