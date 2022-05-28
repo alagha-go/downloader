@@ -16,7 +16,6 @@ type Movie struct {
     ImageUrl									string									`json:"image_url,omitempty" bson:"image_url"`
     Uploaded                                    bool                                    `json:"uploaded,omitempty" bson:"uploaded,omitempty"`
     Released									*time.Time								`json:"released,omitempty" bson:"released"`
-    Urls										[]string								`json:"urls,omitempty" bson:"urls,omitempty"`
 	Collected									bool									`json:"collected,omitempty" bson:"collected,omitempty"`
     Genres										[]string								`json:"genre,omitempty" bson:"genre,omitempty"`
 	Server										*Server									`json:"server,omitempty" bson:"server,omitempty"`
