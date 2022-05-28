@@ -23,6 +23,10 @@ func (Episode *Episode)SetServers() {
         })
     })
     collector.Visit(url)
+	Episode.SetID()
+	Episode.AddServer()
+	Episode.SetServer()
+	Episode.SetServer()
 }
 
 
