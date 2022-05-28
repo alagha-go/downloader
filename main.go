@@ -7,6 +7,10 @@ import (
 	"net/http"
 )
 
+var (
+	PORT = ":6000"
+)
+
 type Statistics struct {
 	Type									string						`json:"type,omitempty"`
 	PagesLength								int							`json:"pages-length,omitempty"`
@@ -20,10 +24,13 @@ type Statistics struct {
 func main() {
 	go movies.Main()
 	go tvshows.Main()
+
+	http.HandleFunc("/", GetStatistics)
+	http.ListenAndServe(PORT, nil)
 }
 
 
-func GetStatistics(res http.ResponseWriter, req http.Request) {
+func GetStatistics(res http.ResponseWriter, req *http.Request) {
 	Statistics := []Statistics{
 		{
 			Type: "Movie",
