@@ -24,6 +24,18 @@ func CollectPages(PagesLength int) {
 	PrintBlue(len(TvShows))
 	PrintCyan(EpisodesLength)
 	PrintGreen("done collecting all the pages data")
+
+	for index := range TvShows {
+		CurrentMovie = index+1
+		if !TvShows[index].Collected {
+			TvShows[index].GetSeasons()
+			TvShows[index].Collected = true
+		}
+		if !TvShows[index].Uploaded {
+			TvShows[index].Upload()
+		}
+		SaveTvShows()
+	}
 }
 
 
