@@ -1,6 +1,7 @@
 package tvshows
 
 import (
+	"fmt"
 	"io/ioutil"
 	"strconv"
 	"strings"
@@ -13,6 +14,9 @@ import (
 func CollectPages(PagesLength int) {
 	for index:=1; index < PagesLength+1; index++ {
 		CollectPageTvShows(index)
+		if index % 20 == 0 {
+			PrintYellow(fmt.Sprintf("TvShows   :%d",index))
+		}
 	}
 	SavePagesData()
 	PrintBlue(len(TvShows))

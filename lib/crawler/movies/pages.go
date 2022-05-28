@@ -1,6 +1,7 @@
 package movies
 
 import (
+	"fmt"
 	"io/ioutil"
 	"strconv"
 	"strings"
@@ -12,6 +13,9 @@ import (
 func CollectPages(PagesLength int) {
 	for index:=1; index<PagesLength+1; index++ {
 		CollectPageMovies(index)
+		if index % 50 == 0 {
+			PrintYellow(fmt.Sprintf("Movies    :%d",index))
+		}
 	}
 	PrintBlue(len(Movies))
 	SavePagesData()
@@ -37,7 +41,6 @@ func CollectMovies(element *colly.HTMLElement) {
         Movie.PageUrl = "https://tinyzonetv.to" + element.ChildAttr("a", "href")
 		index := strings.Index(Movie.PageUrl, "free-")
     	Movie.Code = Movie.PageUrl[index+5:]
-		Movie.SetServers()
 		Movies = append(Movies, Movie)
 	})
 }
