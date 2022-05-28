@@ -1,6 +1,7 @@
 package tvshows
 
 import (
+	"fmt"
 	"strconv"
 	"strings"
 
@@ -34,4 +35,10 @@ func (Season *Season)CollectAllEpisodes(element *colly.HTMLElement) {
 		Season.Episodes = append(Season.Episodes, Episode)
 		EpisodesLength = EpisodesLength+len(Season.Episodes)
 	})
+}
+
+func (Episode *Episode) UpdateEpisode(MovieID, SeasonID primitive.ObjectID) {
+	url := fmt.Sprintf("https://s1.interphlix.com/tv-shows/%s/%s/addepisode", MovieID.Hex(), SeasonID)
+	body := JsonMarshal(Episode)
+	PostRequest(url, body, false)
 }
