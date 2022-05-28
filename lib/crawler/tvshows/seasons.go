@@ -39,6 +39,15 @@ func (TvShow *TvShow) FindSeason(code string) Season {
 	return Season{}
 }
 
+func (TvShow *TvShow) FindSeasonIndex(code string) int {
+	for index := range TvShow.Seasons {
+		if TvShow.Seasons[index].Code == code {
+			return index
+		}
+	}
+	return 0
+}
+
 
 func (TvShow *TvShow) UpdateSeason(Season Season) {
 	url := fmt.Sprintf("https://s1.interphlix.com/tv-shows/%s/addseason", TvShow.ID.Hex())
