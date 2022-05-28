@@ -12,7 +12,9 @@ import (
 
 
 func CollectPages(PagesLength int) {
+	TotalNumberOfPages = PagesLength
 	for index:=1; index < PagesLength+1; index++ {
+		CurrentPageNumber = index
 		CollectPageTvShows(index)
 		if index % 20 == 0 {
 			PrintYellow(fmt.Sprintf("TvShows   :%d",index))
@@ -36,7 +38,8 @@ func CollectPageTvShows(page int) {
 
 
 func CollectTvShows(element *colly.HTMLElement) {
-	element.ForEach(".flw-item", func(_ int, element *colly.HTMLElement) {
+	element.ForEach(".flw-item", func(pos int, element *colly.HTMLElement) {
+		CurrentPageCollectedMovies = pos
 		var TvShow TvShow
 		TvShow.SetTvShowID()
 		TvShow.ID = primitive.NewObjectID()
