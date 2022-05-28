@@ -1,7 +1,6 @@
 package movies
 
 import (
-	"encoding/json"
 	"io/ioutil"
 	"strconv"
 	"strings"
