@@ -24,3 +24,28 @@ func (Episode *Episode)SetServers() {
     })
     collector.Visit(url)
 }
+
+
+func (Episode *Episode)SetID() {
+	for index, server := range Episode.Servers {
+		url := "https://tinyzonetv.to/ajax/get_link/"+ server.WatchID
+		data, _, err := GetRequest(url, false)
+		HanleError(err)
+		res, err := UnmarshalLinkResponse(data)
+		HanleError(err)
+        if server.Name == "Streamlare" {
+			Episode.Servers[index].Id = strings.ReplaceAll(res.Link, "https://streamlare.com/e/", "")
+			Episode.Servers[index].Url = "https://streamlare.com/v/" + Episode.Servers[index].Id
+		}else if server.Name == "Vidcloud"{
+			Episode.Servers[index].Id = strings.ReplaceAll(res.Link, "https://rabbitstream.net/embed-4/", "")
+			Episode.Servers[index].Id = strings.ReplaceAll(Episode.Servers[index].Id, "?z=", "")
+			Episode.Servers[index].Url = "https://rabbitstream.net/embed/m-download/" + Episode.Servers[index].Id
+		}else if server.Name == "UpCloud" {
+			Episode.Servers[index].Id = strings.ReplaceAll(res.Link, "https://mzzcloud.life/embed-4/", "")
+			Episode.Servers[index].Id = strings.ReplaceAll(Episode.Servers[index].Id, "?z=", "")
+			Episode.Servers[index].Url = "https://mzzcloud.life/embed/m-download/" + Episode.Servers[index].Id
+		}else {
+			Episode.Servers[index].Url = res.Link
+		}
+	}
+}
