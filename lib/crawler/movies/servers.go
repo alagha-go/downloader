@@ -24,6 +24,9 @@ func (Movie *Movie)SetServers() {
         })
     })
     collector.Visit(url)
+	Movie.SetID()
+	Movie.AddServer()
+	Movie.SetServer()
 }
 
 
