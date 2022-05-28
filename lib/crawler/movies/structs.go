@@ -8,6 +8,8 @@ type Movie struct {
 	Title										string									`json:"title,omitempty" bson:"title,omitempty"`
     PageUrl										string									`json:"page_url,omitempty" bson:"page_url,omitempty"`
     ImageUrl									string									`json:"image_url,omitempty" bson:"image_url"`
+	Server										*Server									`json:"server,omitempty" bson:"server,omitempty"`
+    Servers										[]Server								`json:"servers,omitempty" bson:"servers,omitempty"`
 }
 
 
