@@ -1,6 +1,31 @@
 package tvshows
 
 
+func (TvShow *TvShow) Update() {
+	NewTvShow := TvShow
+	NewTvShow.Seasons = []Season{}
+	NewTvShow.GetSeasons()
+	if len(NewTvShow.Seasons) > len(TvShow.Seasons) {
+		NewSeasons := NewTvShow.FindNewSeasons(TvShow)
+		for index := range NewSeasons {
+			TvShow.UpdateSeason(NewSeasons[index])
+			TvShow.Seasons = append(TvShow.Seasons, NewSeasons[index])
+		}
+	}
+	NewSeasons := NewTvShow.FindNewEpisodes(TvShow)
+	if len(NewSeasons) != 0 {
+		for index := range NewSeasons {
+			for Eindex := range NewSeasons[index].Episodes {
+				NewSeasons[index].Episodes[Eindex].UpdateEpisode(TvShow.ID, NewSeasons[index].ID)
+				Sindex := TvShow.FindSeasonIndex(NewSeasons[index].Code)
+				if Sindex != -1 {
+					TvShow.Seasons[Sindex].Episodes = append(TvShow.Seasons[Sindex].Episodes, NewSeasons[index].Episodes[Eindex])
+				}
+			}
+		}
+	}
+}
+
 func (TvShow *TvShow) FindNewSeasons(Tvshow *TvShow) []Season {
 	var Seasons []Season
 	for index := range TvShow.Seasons {
