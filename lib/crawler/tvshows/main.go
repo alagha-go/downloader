@@ -14,6 +14,7 @@ import (
 var (
 	TvShows		[]TvShow
 	EpisodesLength int
+	LoopNumber int
 	TotalNumberOfPages int
 	CurrentPageNumber int
 	CurrentPageCollectedMovies int
@@ -23,8 +24,10 @@ var (
 
 
 func Main() {
-	LoadTvShows()
-	CollectPages(GetNumberOfPages())
+	for {
+		LoadTvShows()
+		CollectPages(GetNumberOfPages())
+	}
 }
 
 
