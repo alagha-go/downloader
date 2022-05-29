@@ -14,6 +14,7 @@ import (
 
 var (
 	Movies []Movie
+	LoopNumber int
 	TotalNumberOfPages int
 	CurrentPageNumber int
 	CurrentPageCollectedMovies int
