@@ -26,6 +26,7 @@ func Main() {
 	for {
 		LoadMovies()
 		CollectPages(GetNumberOfPages())
+		UploadUnUploadedMovies()
 	}
 }
 
