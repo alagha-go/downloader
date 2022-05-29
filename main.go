@@ -43,6 +43,7 @@ func GetStatistics(res http.ResponseWriter, req *http.Request) {
 		},
 		{
 			Type: "Tv-Show",
+			LoopNumber: tvshows.LoopNumber,
 			PagesLength: tvshows.TotalNumberOfPages,
 			CurrentPageNumber: tvshows.CurrentPageNumber,
 			CurrentPageCollectedMovies: tvshows.CurrentPageCollectedMovies,
