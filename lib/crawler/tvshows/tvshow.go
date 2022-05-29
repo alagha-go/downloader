@@ -23,7 +23,6 @@ func (TvShow *TvShow)CollectTvShowContent() {
 
     
     collector.OnHTML(".elements", TvShow.SetElements)
-	TvShow.GetSeasons()
     
     collector.Visit(TvShow.PageUrl)
 }
