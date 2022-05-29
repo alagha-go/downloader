@@ -28,6 +28,7 @@ func Main() {
 		LoopNumber++
 		LoadTvShows()
 		CollectPages(GetNumberOfPages())
+		UploadUnUploadedTvShows()
 	}
 }
 
