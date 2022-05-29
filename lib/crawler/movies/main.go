@@ -23,8 +23,10 @@ var (
 
 
 func Main() {
-	LoadMovies()
-	CollectPages(GetNumberOfPages())
+	for {
+		LoadMovies()
+		CollectPages(GetNumberOfPages())
+	}
 }
 
 
