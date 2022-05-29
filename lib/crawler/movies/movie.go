@@ -22,7 +22,6 @@ func (Movie *Movie)CollectMovieContent() {
 
     
     collector.OnHTML(".elements", Movie.SetElements)
-    Movie.SetServers()
     
     collector.Visit(Movie.PageUrl)
 }
