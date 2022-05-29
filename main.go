@@ -35,6 +35,7 @@ func GetStatistics(res http.ResponseWriter, req *http.Request) {
 	Statistics := []Statistics{
 		{
 			Type: "Movie",
+			LoopNumber: movies.LoopNumber,
 			PagesLength: movies.TotalNumberOfPages,
 			CurrentPageNumber: movies.CurrentPageNumber,
 			CurrentPageCollectedMovies: movies.CurrentPageCollectedMovies,
