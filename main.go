@@ -13,6 +13,7 @@ var (
 
 type Statistics struct {
 	Type									string						`json:"type,omitempty"`
+	LoopNumber								int							`json:"loop-number,omitempty"`
 	PagesLength								int							`json:"pages-length,omitempty"`
 	CurrentPageNumber						int							`json:"current-page,omitempty"`
 	CurrentPageCollectedMovies				int							`json:"page-collected-movies,omitempty"`
