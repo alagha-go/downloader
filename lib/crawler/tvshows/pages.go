@@ -33,6 +33,8 @@ func CollectPages(PagesLength int) {
 		}
 		if !TvShows[index].Uploaded {
 			TvShows[index].Upload()
+		}else {
+			TvShows[index].Update()
 		}
 		SaveTvShows()
 	}
