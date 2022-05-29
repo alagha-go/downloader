@@ -25,6 +25,7 @@ var (
 
 func Main() {
 	for {
+		LoopNumber++
 		LoadTvShows()
 		CollectPages(GetNumberOfPages())
 	}
